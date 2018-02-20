@@ -5,7 +5,8 @@
   "description": "Toolset for building NebulaE Microservices",
   "main": "index.js",
   "scripts": {
-    "gen-integrated-emi": "node generate-integrated-ng-project.js"
+    "gen-integrated-emi": "node generate-integrated-ng-project.js",
+    "export-emi-microfrontends": "node export-emi-microfrontends.js"
   },
   "keywords": [
     "tools",
