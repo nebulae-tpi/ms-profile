@@ -1,0 +1,33 @@
+[
+    {
+        "name" : "PROFILE",
+        "contents": [
+            {
+                "id": "PROFILE",
+                "icon": "account_circle",
+                "translate": {
+                    "en": "Profile",
+                    "es": "Perfil"
+                },
+                "navURL": "/profile",
+                "path": "profile",
+                "loadChildren": "./main/content/profile/profile.module#ProfileModule",
+                "priority": 100000
+            }
+        ],
+        "preBuildCommands": [
+            "npm i --save chart.js"
+        ],
+        "environmentVars": {
+            "default": {
+                "production": false
+            },
+            "local": {
+                "production": false
+            },
+            "prod": {
+                "production": true
+            }            
+        }
+    }
+]
