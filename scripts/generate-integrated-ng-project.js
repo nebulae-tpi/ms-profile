@@ -2,7 +2,7 @@ const shell = require('shelljs');
 const jsonfile = require('jsonfile');
 const fs = require('fs');
 const FilesGenerator = require('./angular-project-files-generator.js');
-var emoji = require('node-emoji')
+var emoji = require('node-emoji');
 
 const EMI_SHELL_GIT_URL = 'https://github.com/NebulaEngineering/lab-emi.git';
 const EMI_SHELL_GIT_BRANCH = 'exp-emi-shell-proj';
@@ -57,7 +57,7 @@ mfes.forEach(mfe => {
 });
 
 // ======= MICRO-FRONTENDS ROUTE, NAV AND ENVIROMENT GENERATORS ==========
-console.log('Generating routes and navs for Micro-frontends');
+console.log('Generating routes, navs and environment variables for Micro-frontends');
 shell.cd(topLevelDir);
 const setup = jsonfile.readFileSync(`${MFES_PATH}etc/mfe-setup.json`);
 FilesGenerator.generateFiles(setup, `${topLevelDir}/dist/emi`);
