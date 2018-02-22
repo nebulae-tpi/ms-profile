@@ -101,7 +101,7 @@ public static timeline = {
     activities: [
         {
             'user'   : {
-                'name'  : 'Alice Freeman',
+                'name'  : 'Sebastian Molano',
                 'avatar': 'assets/images/avatars/alice.jpg'
             },
             'message': 'started following you.',
