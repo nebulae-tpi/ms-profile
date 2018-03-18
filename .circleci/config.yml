@@ -12,9 +12,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install NPM dependencies
+          name: Install NebulaE CLI tools
           command: |
-            npm install
             npm install -g nebulae
   deploy_qa:
     working_directory: /workspace
