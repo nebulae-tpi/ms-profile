@@ -1,0 +1,44 @@
+version: 2
+### NEEDED ENV VARS:
+  # QA_GCLOUD_SERVICE_KEY
+  # QA_GCLOUD_PROJECT
+  # QA_GCLOUD_ZONE
+  # QA_GCLOUD_CLUSTER
+jobs:
+  build:    
+    working_directory: /workspace
+    docker:
+      - image: node:9.8.0
+    steps:
+      - checkout
+      - run:
+          name: Install NPM dependencies
+          command: |
+            npm install
+            npm install -g nebulae
+  deploy_qa:
+    working_directory: /workspace
+    docker:
+      - image: node:9.8.0
+    steps:
+      - checkout
+      - run:
+          name: Register Microservice on Service Directory
+          command: |
+            echo $QA_GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > /$CIRCLE_WORKING_DIRECTORY/etc/gcloud-service-key.json
+            nebulae register microfrontend --microservice-id=$CIRCLE_PR_REPONAME --frontend-id=emi --file=/$CIRCLE_WORKING_DIRECTORY/etc/mfe-setup.json --store-type=GCP_DATASTORE --gcp-service-account-token=/$CIRCLE_WORKING_DIRECTORY/etc/gcloud-service-key.json
+      #- run:
+       #   name: Deploy on Kubernetes
+        #  command: |
+         #   kubectl apply -f /workspace/deployment/gke/
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build:
+          context: lab-microservices
+      - deploy_qa:
+          context: lab-microservices
+          requires:
+            - build
