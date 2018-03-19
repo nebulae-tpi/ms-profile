@@ -1,13 +1,13 @@
 version: 2
 jobs:
   # build:    
-  #   working_directory: /workspace
+  #   working_directory: ~/workspace
   #   docker:
   #     - image: node:9.8.0
   #   steps:
   #     - checkout
   deploy_qa:
-    working_directory: /workspace
+    working_directory: ~/workspace
     docker:
       - image: node:9.8.0
         command: bash
@@ -32,7 +32,7 @@ jobs:
       #- run:
        #   name: Deploy on Kubernetes
         #  command: |
-         #   kubectl apply -f /workspace/deployment/gke/
+         #   kubectl apply -f ~/workspace/deployment/gke/
 workflows:
   version: 2
   build-and-deploy:
