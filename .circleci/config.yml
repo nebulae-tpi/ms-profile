@@ -7,6 +7,8 @@ jobs:
   #   steps:
   #     - checkout
   deploy_qa:
+    cache_directories:
+      - /home/node/
     working_directory: /home/node/workspace
     docker:
       - image: node:9.8.0
