@@ -17,7 +17,7 @@ jobs:
       - run:
           name: Extracting GCP Service key
           command: |
-            echo $QA_GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > /$CIRCLE_WORKING_DIRECTORY/etc/gcloud-service-key.json
+            echo $QA_GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > $CIRCLE_WORKING_DIRECTORY/etc/gcloud-service-key.json
       - run:
           name: Installing NebulaE-cli
           command: |
@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Registering Micro-FrontEnd
           command: |
-            nebulae register microfrontend --microservice-id=$CIRCLE_PR_REPONAME --frontend-id=emi --file=/$CIRCLE_WORKING_DIRECTORY/etc/mfe-setup.json --store-type=GCP_DATASTORE --gcp-service-account-token=/$CIRCLE_WORKING_DIRECTORY/etc/gcloud-service-key.json
+            nebulae register microfrontend --microservice-id=$CIRCLE_PR_REPONAME --frontend-id=emi --file=$CIRCLE_WORKING_DIRECTORY/etc/mfe-setup.json --store-type=GCP_DATASTORE --gcp-service-account-token=$CIRCLE_WORKING_DIRECTORY/etc/gcloud-service-key.json
       #- run:
        #   name: Deploy on Kubernetes
         #  command: |
