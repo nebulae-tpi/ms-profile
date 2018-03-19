@@ -7,7 +7,7 @@ jobs:
   #   steps:
   #     - checkout
   deploy_qa:
-    working_directory: ~/workspace
+    working_directory: /home/node/workspace
     docker:
       - image: node:9.8.0
         command: bash
