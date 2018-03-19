@@ -1,7 +1,7 @@
 version: 2
 jobs:
   # build:    
-  #   working_directory: /home/node
+  #   working_directory: ~/workspace
   #   docker:
   #     - image: node:9.8.0
   #   steps:
@@ -9,7 +9,7 @@ jobs:
   deploy_qa:
     cache_directories:
       - /home/node/
-    working_directory: /home/node
+    working_directory: /home/node/workspace
     docker:
       - image: node:9.8.0
         command: bash
@@ -21,20 +21,17 @@ jobs:
           command: |
             echo $QA_GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > $CIRCLE_WORKING_DIRECTORY/etc/gcloud-service-key.json
       - run:
-          name: Installing NebulaE-cli
+          name: Installing NebulaE-cli & Registering Micro-FrontEnd
           command: |
             npm config set prefix '~/.npm-global'
             export PATH=~/.npm-global/bin:$PATH
             source ~/.profile
-            npm install -g nebulae            
-      - run:
-          name: Registering Micro-FrontEnd
-          command: |
-            nebulae register microfrontend --microservice-id=$CIRCLE_PR_REPONAME --frontend-id=emi --file=$CIRCLE_WORKING_DIRECTORY/etc/mfe-setup.json --store-type=GCP_DATASTORE --gcp-service-account-token=$CIRCLE_WORKING_DIRECTORY/etc/gcloud-service-key.json
+            npm install -g nebulae    
+            nebulae register microfrontend --microservice-id=$CIRCLE_PR_REPONAME --frontend-id=emi --file=$CIRCLE_WORKING_DIRECTORY/etc/mfe-setup.json --store-type=GCP_DATASTORE --gcp-service-account-token=$CIRCLE_WORKING_DIRECTORY/etc/gcloud-service-key.json            
       #- run:
        #   name: Deploy on Kubernetes
         #  command: |
-         #   kubectl apply -f /home/node
+         #   kubectl apply -f ~/workspace/deployment/gke/
 workflows:
   version: 2
   build-and-deploy:
