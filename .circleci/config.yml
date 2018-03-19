@@ -27,7 +27,7 @@ jobs:
             export PATH=~/.npm-global/bin:$PATH
             source ~/.profile
             npm install -g nebulae    
-            nebulae register microfrontend --microservice-id=$CIRCLE_PR_REPONAME --frontend-id=emi --file=$CIRCLE_WORKING_DIRECTORY/etc/mfe-setup.json --store-type=GCP_DATASTORE --gcp-service-account-token=$CIRCLE_WORKING_DIRECTORY/etc/gcloud-service-key.json            
+            nebulae register microfrontend --microservice-id=$CIRCLE_PROJECT_REPONAME --frontend-id=emi --file=$CIRCLE_WORKING_DIRECTORY/etc/mfe-setup.json --store-type=GCP_DATASTORE --gcp-service-account-token=$CIRCLE_WORKING_DIRECTORY/etc/gcloud-service-key.json            
       #- run:
        #   name: Deploy on Kubernetes
         #  command: |
