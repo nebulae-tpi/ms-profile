@@ -1,10 +1,10 @@
 [
     {
-        "name" : "PROFILE",
-        "src" : "frontend/emi/profile/",
+        "name" : "profile",
+        "src" : "frontend/emi/profile",
         "contents": [
             {
-                "id": "PROFILE",
+                "id": "profile",
                 "icon": "account_circle",
                 "translate": {
                     "en": "Profile",
