@@ -62,7 +62,7 @@ jobs:
             export FRONTEND_SHELL_PATH=/tmp/
             cd /tmp/emi
             sh /tmp/emi/deployment/docker/build-docker-hub.sh
-            echo $(docker pull $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:latest | grep sha256 | cut -c 9-) > /tmp/DOCKERHUB_GENERATED_IMAGE_DIGEST
+            echo $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE@$(docker pull $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:latest | grep sha256 | cut -c 9-) > /tmp/DOCKERHUB_GENERATED_IMAGE_DIGEST
       - persist_to_workspace:
           root: /tmp
           paths:
@@ -87,8 +87,8 @@ jobs:
         - run:
             name: Deploy on Kubernetes
             command: |
-              echo docker image DIGEST to set $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE@$(< /tmp/DOCKERHUB_GENERATED_IMAGE_DIGEST)
-              kubectl set image deployment/frontend-emi frontend-emi=$DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE@$(< /tmp/DOCKERHUB_GENERATED_IMAGE_DIGEST)
+              echo docker image DIGEST to set $(< /tmp/DOCKERHUB_GENERATED_IMAGE_DIGEST)
+              kubectl set image deployment/frontend-emi frontend-emi=$(< /tmp/DOCKERHUB_GENERATED_IMAGE_DIGEST)
 workflows:
   version: 2
   build-and-deploy:
