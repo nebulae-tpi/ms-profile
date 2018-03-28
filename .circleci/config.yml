@@ -58,6 +58,7 @@ jobs:
             git clone https://github.com/nebulae-tpm/emi
             export DOCKERHUB_NAMESPACE=$DOCKERHUB_NAMESPACE
             export DOCKERHUB_USER=$DOCKERHUB_USER
+            export DOCKERHUB_IMAGE=emi
             export DOCKERHUB_PASS=$DOCKERHUB_PASS
             export FRONTEND_SHELL_PATH=/tmp/
             cd /tmp/emi
