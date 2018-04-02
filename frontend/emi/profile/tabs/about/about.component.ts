@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../profile.service';
 import { fuseAnimations } from '../../../../../core/animations';
-import { locale as english } from '../../../i18n/en';
-import { locale as spanish } from '../../../i18n/es';
+import { locale as english } from '../../i18n/en';
+import { locale as spanish } from '../../i18n/es';
 import { FuseTranslationLoaderService } from '../../../../../core/services/translation-loader.service';
 
 @Component({
