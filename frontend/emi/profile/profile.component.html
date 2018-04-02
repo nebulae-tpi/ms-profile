@@ -10,11 +10,6 @@
             </div>
         </div>
 
-        <div class="actions" fxLayout="row" fxLayoutAlign="end center" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'200ms'}}">
-            <button mat-raised-button color="accent" aria-label="Follow">Follow</button>
-            <button mat-raised-button color="primary" aria-label="Send Message">Send Message</button>
-        </div>
-
     </div>
     <!-- / HEADER -->
 
@@ -23,16 +18,9 @@
 
         <mat-tab-group dynamicHeight="true">
 
-            <mat-tab label="Timeline">
-                <profile-timeline></profile-timeline>
-            </mat-tab>
 
-            <mat-tab label="About">
+            <mat-tab label="{{'PROFILE.ABOUT' | translate}}">
                 <profile-about></profile-about>
-            </mat-tab>
-
-            <mat-tab label="Photos & Videos">
-                <profile-photos-videos></profile-photos-videos>
             </mat-tab>
 
         </mat-tab-group>
