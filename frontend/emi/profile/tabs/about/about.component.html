@@ -44,14 +44,6 @@
           </table>
         </div>
 
-        <div class="info-line">
-          <table class="info jobs">
-            <tr class="job">
-              <td class="company">{{'PROFILE.PASSWORD' | translate}}</td>
-              <td class="date">*********</td>
-            </tr>
-          </table>
-        </div>
       </div>
 
     </div>
@@ -63,19 +55,8 @@
       </header>
 
       <div class="content">
-        <div class="info-line">
-          <div class="title">{{'PROFILE.OPERATOR' | translate}}</div>
-          <table class="info jobs">
-            <tr class="job">
-              <td class="company">{{'PROFILE.DASHBOARD' | translate}}</td>
-              <td class="date">Read and Write</td>
-            </tr>
-
-            <tr class="job">
-              <td class="company">{{'PROFILE.PROFILE' | translate}}</td>
-              <td class="date">Admin</td>
-            </tr>
-          </table>
+        <div class="info-line" *ngFor="let userRole of userRoles">
+          <div class="title">{{userRole}}</div>
         </div>
       </div>
     </div>

@@ -31,5 +31,6 @@ export class ProfileAboutComponent implements OnInit {
 
   async ngOnInit() {
     this.userDetails = await this.keycloakService.loadUserProfile();
+    this.userRoles = this.keycloakService.getUserRoles();
   }
 }
