@@ -15,7 +15,7 @@ import { KeycloakProfile } from 'keycloak-js';
 })
 export class ProfileAboutComponent implements OnInit {
   userRoles: string[];
-  userDetails: KeycloakProfile;
+  userDetails: KeycloakProfile = {};
   about: any;
 
   constructor(

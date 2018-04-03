@@ -15,7 +15,7 @@ import { FuseTranslationLoaderService } from '../../../core/services/translation
 })
 export class ProfileComponent implements OnInit {
 
-    userDetails: KeycloakProfile;
+  userDetails: KeycloakProfile = {};
 
     constructor(private keycloakService: KeycloakService,
       private translationLoader: FuseTranslationLoaderService) {
