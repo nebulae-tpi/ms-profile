@@ -13,8 +13,7 @@
                 "navURL": "/profile",
                 "path": "profile",
                 "loadChildren": "./main/content/profile/profile.module#ProfileModule",
-                "priority": 100000,
-                "default": true               
+                "priority": 100000             
             }
         ],
         "preBuildCommands": [
