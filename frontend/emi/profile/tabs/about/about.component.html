@@ -6,9 +6,9 @@
 
       <header class="mat-accent-bg">
         <div class="title">{{'PROFILE.GENERAL_INFORMATION' | translate}}
-          <button #editProfileBtn mat-icon-button aria-label="Mention somebody" roterLink
-            matTooltip="{{'PROFILE.EDIT_NAME' | translate  }}"
-            (click)="getLinkToEditKeycloakAccount(editProfileBtn)">
+          <button mat-icon-button aria-label="Mention somebody" roterLink
+            matTooltip="{{'PROFILE.EDIT_FIELDS' | translate  }}"
+            (click)="goToEditKeycloakAccount()">
             <mat-icon>edit</mat-icon>
           </button>
         </div>

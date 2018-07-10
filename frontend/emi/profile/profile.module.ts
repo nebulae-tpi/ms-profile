@@ -30,7 +30,7 @@ const routes = [
         RouterModule.forChild(routes)
     ],
     providers   : [
-        ProfileService
+      ProfileService
     ]
 })
 export class ProfileModule

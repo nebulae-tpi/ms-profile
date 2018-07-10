@@ -28,12 +28,10 @@ export class ProfileComponent implements OnInit {
     async ngOnInit() {
         this.userDetails = await this.keycloakService.loadUserProfile();
         this.userRoles = this.keycloakService.getUserRoles(true);
-        console.log('user roles', this.userRoles);
     }
 
 
     async copyTokenToClipBoard() {
-      console.log('copyTokenToClipBoard...');
       const element = document.createElement('textarea');
       element.id = 'jwtBody';
       element.style.position = 'fixed';

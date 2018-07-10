@@ -17,7 +17,7 @@ export const locale = {
         'ABOUT': 'About',
         COPY_TO_CLIPBOARD: 'Copy token',
         COPY_TO_CLIPBOARD_DESC: 'Copy token to clipboard',
-        EDIT_NAME: 'Edit name'
+        EDIT_FIELDS: 'Edit fields'
       }
   }
 };

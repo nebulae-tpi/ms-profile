@@ -1,4 +1,7 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { environment as ENV } from './../../../../../../environments/environment';
+import { environment as prodEnv } from './../../../../../../environments/environment.prod';
+import { environment as localEnv } from './../../../../../../environments/environment.local';
+import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../profile.service';
 import { fuseAnimations } from '../../../../../core/animations';
 import { locale as english } from '../../i18n/en';
@@ -19,6 +22,11 @@ export class ProfileAboutComponent implements OnInit {
   userRoles: string[];
   userDetails: KeycloakProfile = {};
   about: any;
+  enviroment = {
+    env: ENV,
+    local: localEnv,
+    prod: prodEnv
+  };
 
   constructor(
     private profileService: ProfileService,
@@ -37,8 +45,9 @@ export class ProfileAboutComponent implements OnInit {
     this.userRoles = this.keycloakService.getUserRoles();
   }
 
-  getLinkToEditKeycloakAccount(element: ElementRef){
-    console.log('current: ', this.router.url);
-    console.log('', this.router.navigate(['/auth/realms/TPM/account/']));
+  goToEditKeycloakAccount(){
+    console.log(this.enviroment);
+    const realUrl = this.enviroment.env.keycloak.url + '/realms/' + this.enviroment.env.keycloak.realm + '/account/';
+    window.open(realUrl, '_blank');
   }
 }
