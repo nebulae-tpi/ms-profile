@@ -7,6 +7,7 @@ import { locale as spanish } from './i18n/es';
 import { FuseTranslationLoaderService } from '../../../core/services/translation-loader.service';
 
 @Component({
+    // tslint:disable-next-line:component-selector
     selector: 'profile',
     templateUrl: './profile.component.html',
     styleUrls: ['./profile.component.scss'],
@@ -16,6 +17,7 @@ import { FuseTranslationLoaderService } from '../../../core/services/translation
 export class ProfileComponent implements OnInit {
 
   userDetails: KeycloakProfile = {};
+  userRoles: string[] = [];
 
     constructor(private keycloakService: KeycloakService,
       private translationLoader: FuseTranslationLoaderService) {
@@ -25,5 +27,23 @@ export class ProfileComponent implements OnInit {
 
     async ngOnInit() {
         this.userDetails = await this.keycloakService.loadUserProfile();
+        this.userRoles = this.keycloakService.getUserRoles(true);
+        console.log('user roles', this.userRoles);
+    }
+
+
+    async copyTokenToClipBoard() {
+      console.log('copyTokenToClipBoard...');
+      const element = document.createElement('textarea');
+      element.id = 'jwtBody';
+      element.style.position = 'fixed';
+      element.style.top = '0';
+      element.style.left = '0';
+      element.style.opacity = '0';
+      element.value = await this.keycloakService.getToken();
+      document.body.appendChild(element);
+      element.select();
+      document.execCommand('copy');
+      document.body.removeChild(document.getElementById('jwtBody'));
     }
 }

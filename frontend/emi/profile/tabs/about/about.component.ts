@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ProfileService } from '../../profile.service';
 import { fuseAnimations } from '../../../../../core/animations';
 import { locale as english } from '../../i18n/en';
@@ -6,8 +6,10 @@ import { locale as spanish } from '../../i18n/es';
 import { FuseTranslationLoaderService } from '../../../../../core/services/translation-loader.service';
 import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
+import { Router } from '@angular/router';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'profile-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
@@ -21,7 +23,8 @@ export class ProfileAboutComponent implements OnInit {
   constructor(
     private profileService: ProfileService,
     private translationLoader: FuseTranslationLoaderService,
-    private keycloakService: KeycloakService
+    private keycloakService: KeycloakService,
+    private router: Router
   ) {
     this.translationLoader.loadTranslations(english, spanish);
     this.profileService.aboutOnChanged.subscribe(about => {
@@ -32,5 +35,10 @@ export class ProfileAboutComponent implements OnInit {
   async ngOnInit() {
     this.userDetails = await this.keycloakService.loadUserProfile();
     this.userRoles = this.keycloakService.getUserRoles();
+  }
+
+  getLinkToEditKeycloakAccount(element: ElementRef){
+    console.log('current: ', this.router.url);
+    console.log('', this.router.navigate(['/auth/realms/TPM/account/']));
   }
 }

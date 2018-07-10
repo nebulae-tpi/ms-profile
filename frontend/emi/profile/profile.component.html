@@ -10,6 +10,17 @@
             </div>
         </div>
 
+        <div class="actions" fxLayout="row" fxLayoutAlign="end center" *fuseIfOnDom
+             [@animate]="{value:'*',params:{delay:'200ms'}}">
+            <button *ngIf="userRoles.includes('developer')"
+              mat-raised-button color="primary"
+              aria-label="'PROFILE.COPY_TO_CLIPBOARD_DESC' | translate"
+              (click) ="copyTokenToClipBoard()">{{'PROFILE.COPY_TO_CLIPBOARD' | translate}}
+                <mat-icon aria-label="'PROFILE.COPY_TO_CLIPBOARD_DESC' | translate">content_copy</mat-icon>
+            </button>
+            <textarea style="display: none; opacity: 0;" name="jwt" id="jwt" cols="0" rows="0"></textarea>
+        </div>
+
     </div>
     <!-- / HEADER -->
 
