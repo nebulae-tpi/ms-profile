@@ -16,8 +16,7 @@ export const locale = {
       'LATEST_ACTIVITY': 'Ultimas actividades',
       'ABOUT': 'Acerca de',
       COPY_TO_CLIPBOARD: 'Copiar token',
-      COPY_TO_CLIPBOARD_DESC: 'copiar token al portapapeles',
-      EDIT_FIELDS: 'Editar campos'
+      EDIT_PROFILE: 'Editar perfil'
     }
   }
 };

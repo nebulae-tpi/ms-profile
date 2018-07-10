@@ -1,3 +1,4 @@
+import { environment as ENV } from './../../../../environments/environment';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { fuseAnimations } from '../../../core/animations';
 import { KeycloakService } from 'keycloak-angular';
@@ -17,7 +18,7 @@ import { FuseTranslationLoaderService } from '../../../core/services/translation
 export class ProfileComponent implements OnInit {
 
   userDetails: KeycloakProfile = {};
-  userRoles: string[] = [];
+  enviroment = ENV;
 
     constructor(private keycloakService: KeycloakService,
       private translationLoader: FuseTranslationLoaderService) {
@@ -27,21 +28,12 @@ export class ProfileComponent implements OnInit {
 
     async ngOnInit() {
         this.userDetails = await this.keycloakService.loadUserProfile();
-        this.userRoles = this.keycloakService.getUserRoles(true);
     }
 
-
-    async copyTokenToClipBoard() {
-      const element = document.createElement('textarea');
-      element.id = 'jwtBody';
-      element.style.position = 'fixed';
-      element.style.top = '0';
-      element.style.left = '0';
-      element.style.opacity = '0';
-      element.value = await this.keycloakService.getToken();
-      document.body.appendChild(element);
-      element.select();
-      document.execCommand('copy');
-      document.body.removeChild(document.getElementById('jwtBody'));
+    goToEditKeycloakAccount(){
+      window.open(
+        this.enviroment.keycloak.url + '/realms/' + this.enviroment.keycloak.realm + '/account/',
+        '_blank'
+      );
     }
 }

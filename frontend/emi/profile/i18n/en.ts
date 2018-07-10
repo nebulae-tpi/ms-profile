@@ -16,8 +16,7 @@ export const locale = {
         'LATEST_ACTIVITY': 'Latest activity',
         'ABOUT': 'About',
         COPY_TO_CLIPBOARD: 'Copy token',
-        COPY_TO_CLIPBOARD_DESC: 'Copy token to clipboard',
-        EDIT_FIELDS: 'Edit fields'
+        EDIT_PROFILE: 'Edit profile'
       }
   }
 };
