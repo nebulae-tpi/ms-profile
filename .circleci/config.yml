@@ -266,10 +266,10 @@ workflows:
           context: TPM
           requires:
             - prepare
-      # - build-api:
-      #     context: TPM
-      #     requires:
-      #       - prepare
+      - build-api:
+          context: TPM
+          requires:
+            - prepare
       # - build-mbinit:
       #     context: TPM
       #     requires:
@@ -283,5 +283,5 @@ workflows:
           context: TPM
           requires:
             - build-frontend
-            # - build-api
+            - build-api
             # - build-backend
