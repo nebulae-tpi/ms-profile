@@ -202,7 +202,7 @@ jobs:
             cd ~/nebulae/repo/
             mkdir ~/nebulae/backend
             # unmcomment the following line when backend exist
-#            cp ~/nebulae/go/mbinit ~/nebulae/repo/backend/profile/
+            # cp ~/nebulae/go/mbinit ~/nebulae/repo/backend/profile/
             export DOCKERHUB_IMAGE=profile.backend.profile
             export DOCKERHUB_TAG=0.0.1
             gitChanged backend/profile || docker build  -t $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:$DOCKERHUB_TAG -t $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:latest ~/nebulae/repo/backend/profile/
