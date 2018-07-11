@@ -38,7 +38,7 @@ jobs:
           at: ~/nebulae
       - run:
           name: Register Micr-FrontEnd + Compose UI
-          comand: |
+          command: |
             source ~/nebulae/repo/.circleci/scripts/gitChanged.sh
             cd ~/nebulae/repo/
             gitChanged frontend || echo $GCP_SERVICE_ACCOUNT_PROD | base64 --decode --ignore-garbage > /tmp/gcloud-service-key.json
