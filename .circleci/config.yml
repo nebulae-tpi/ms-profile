@@ -10,7 +10,7 @@ jobs:
         user: circleci
     steps:
       - checkout:
-        path: ~/nebulae/repo
+          path: ~/nebulae/repo
       - persist_to_workspace:
           root: ~/nebulae
           paths:
