@@ -37,19 +37,19 @@ jobs:
       - attach_workspace:
           at: ~/nebulae
       - run:
-        name: Register Micr-FrontEnd + Compose UI
-        comand: |
-          source ~/nebulae/repo/.circleci/scripts/gitChanged.sh
-          cd ~/nebulae/repo/
-          gitChanged frontend || echo $GCP_SERVICE_ACCOUNT_PROD | base64 --decode --ignore-garbage > /tmp/gcloud-service-key.json
-          gitChanged frontend || npm config set prefix '~/.npm-global'
-          gitChanged frontend || export PATH=~/.npm-global/bin:$PATH
-          gitChanged frontend || source ~/.profile
-          gitChanged frontend || npm install -g @nebulae/cli # before npm install -g nebulae
-          gitChanged frontend || npm install -g @angular/cli
-          gitChanged frontend || nebulae register microfrontend --microservice-id=profile --frontend-id=emi --setup-file=/tmp/repo/etc/mfe-setup.json --store-type=GCP_DATASTORE --gcp-service-account-token=/tmp/gcloud-service-key.json
-          gitChanged frontend || nebulae compose-ui production --shell-type=FUSE2_ANGULAR --shell-repo=https://github.com/nebulae-tpm/emi.git --frontend-id=emi --output-dir=/tmp/nebulae/emi/ --store-type=GCP_DATASTORE --gcp-service-account-token=/tmp/gcloud-service-key.json
-          gitChanged frontend || ls /home/circleci/nebulae/frontend/emi/
+          name: Register Micr-FrontEnd + Compose UI
+          comand: |
+            source ~/nebulae/repo/.circleci/scripts/gitChanged.sh
+            cd ~/nebulae/repo/
+            gitChanged frontend || echo $GCP_SERVICE_ACCOUNT_PROD | base64 --decode --ignore-garbage > /tmp/gcloud-service-key.json
+            gitChanged frontend || npm config set prefix '~/.npm-global'
+            gitChanged frontend || export PATH=~/.npm-global/bin:$PATH
+            gitChanged frontend || source ~/.profile
+            gitChanged frontend || npm install -g @nebulae/cli # before npm install -g nebulae
+            gitChanged frontend || npm install -g @angular/cli
+            gitChanged frontend || nebulae register microfrontend --microservice-id=profile --frontend-id=emi --setup-file=/tmp/repo/etc/mfe-setup.json --store-type=GCP_DATASTORE --gcp-service-account-token=/tmp/gcloud-service-key.json
+            gitChanged frontend || nebulae compose-ui production --shell-type=FUSE2_ANGULAR --shell-repo=https://github.com/nebulae-tpm/emi.git --frontend-id=emi --output-dir=/tmp/nebulae/emi/ --store-type=GCP_DATASTORE --gcp-service-account-token=/tmp/gcloud-service-key.json
+            gitChanged frontend || ls /home/circleci/nebulae/frontend/emi/
       # - run:
       #     name: Installing NebulaE cli & Compose FrontEnd
       #     command: |
@@ -266,19 +266,19 @@ workflows:
           context: TPM
           requires:
             - prepare
-      - build-api:
-          context: TPM
-          requires:
-            - prepare
-      - build-mbinit:
-          context: TPM
-          requires:
-            - prepare
-      - build-backend:
-          context: TPM
-          requires:
-            - prepare
-            - build-mbinit
+      # - build-api:
+      #     context: TPM
+      #     requires:
+      #       - prepare
+      # - build-mbinit:
+      #     context: TPM
+      #     requires:
+      #       - prepare
+      # - build-backend:
+      #     context: TPM
+      #     requires:
+      #       - prepare
+      #       - build-mbinit
       - deploy-prod:
           context: TPM
           requires:
