@@ -201,7 +201,8 @@ jobs:
             source ~/nebulae/repo/.circleci/scripts/gitChanged.sh
             cd ~/nebulae/repo/
             mkdir ~/nebulae/backend
-            cp ~/nebulae/go/mbinit ~/nebulae/repo/backend/profile/
+            # unmcomment the following line when backend exist
+#            cp ~/nebulae/go/mbinit ~/nebulae/repo/backend/profile/
             export DOCKERHUB_IMAGE=profile.backend.profile
             export DOCKERHUB_TAG=0.0.1
             gitChanged backend/profile || docker build  -t $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:$DOCKERHUB_TAG -t $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:latest ~/nebulae/repo/backend/profile/
@@ -270,18 +271,18 @@ workflows:
           context: TPM
           requires:
             - prepare
-      # - build-mbinit:
-      #     context: TPM
-      #     requires:
-      #       - prepare
-      # - build-backend:
-      #     context: TPM
-      #     requires:
-      #       - prepare
-      #       - build-mbinit
+      - build-mbinit:
+          context: TPM
+          requires:
+            - prepare
+      - build-backend:
+          context: TPM
+          requires:
+            - prepare
+            - build-mbinit
       - deploy-prod:
           context: TPM
           requires:
             - build-frontend
             - build-api
-            # - build-backend
+            - build-backend
