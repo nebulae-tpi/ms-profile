@@ -14,7 +14,9 @@ export const locale = {
         'PROFILE': 'Profile',
         'LOGIN_AT': 'Login at',
         'LATEST_ACTIVITY': 'Latest activity',
-        'ABOUT': 'About'
+        'ABOUT': 'About',
+        COPY_TO_CLIPBOARD: 'Copy token',
+        EDIT_PROFILE: 'Edit profile'
       }
   }
 };

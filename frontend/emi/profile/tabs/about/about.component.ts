@@ -8,6 +8,7 @@ import { KeycloakService } from 'keycloak-angular';
 import { KeycloakProfile } from 'keycloak-js';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'profile-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
