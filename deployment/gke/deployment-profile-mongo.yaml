@@ -42,6 +42,11 @@ spec:
         volumeMounts:
         - name: profile-mongo-persistent-storage
           mountPath: /data/db
+        resources:
+          requests:
+            cpu: "50m"
+          limits:
+            cpu: "100m"
       volumes:
       - name: profile-mongo-persistent-storage
         persistentVolumeClaim:
