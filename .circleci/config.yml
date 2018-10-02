@@ -267,22 +267,22 @@ workflows:
           context: TPM
           requires:
             - prepare
-      - build-api:
-          context: TPM
-          requires:
-            - prepare
-      - build-mbinit:
-          context: TPM
-          requires:
-            - prepare
-      - build-backend:
-          context: TPM
-          requires:
-            - prepare
-            - build-mbinit
+      # - build-api:
+      #     context: TPM
+      #     requires:
+      #       - prepare
+      # - build-mbinit:
+      #     context: TPM
+      #     requires:
+      #       - prepare
+      # - build-backend:
+      #     context: TPM
+      #     requires:
+      #       - prepare
+      #       - build-mbinit
       - deploy-prod:
           context: TPM
           requires:
             - build-frontend
-            - build-api
-            - build-backend
+            # - build-api
+            # - build-backend
