@@ -27,3 +27,4 @@ export class ProfileComponent implements OnInit {
         this.userDetails = await this.keycloakService.loadUserProfile();
     }
 }
+
