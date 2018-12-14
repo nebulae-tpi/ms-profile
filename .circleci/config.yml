@@ -186,33 +186,33 @@ jobs:
 
 ################# BACK END ################ 
             
-  build-backend:    
-    working_directory: ~/nebulae/
-    docker:
-      - image: circleci/node:9.9.0
-        command: bash
-    steps:
-      - attach_workspace:
-          at: ~/nebulae
-      - setup_remote_docker      
-      - run:
-          name: Build docker image for profile
-          command: |
-            source ~/nebulae/repo/.circleci/scripts/gitChanged.sh
-            cd ~/nebulae/repo/
-            mkdir ~/nebulae/backend
-            # unmcomment the following line when backend exist
-            # cp ~/nebulae/go/mbinit ~/nebulae/repo/backend/profile/
-            export DOCKERHUB_IMAGE=profile.backend.profile
-            export DOCKERHUB_TAG=0.0.1
-            gitChanged backend/profile || docker build  -t $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:$DOCKERHUB_TAG -t $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:latest ~/nebulae/repo/backend/profile/
-            gitChanged backend/profile || docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
-            gitChanged backend/profile || docker push $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:$DOCKERHUB_TAG
-            gitChanged backend/profile || docker push $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:latest      
-      - persist_to_workspace:
-          root: ~/nebulae/
-          paths:
-            - backend            
+  # build-backend:    
+  #   working_directory: ~/nebulae/
+  #   docker:
+  #     - image: circleci/node:9.9.0
+  #       command: bash
+  #   steps:
+  #     - attach_workspace:
+  #         at: ~/nebulae
+  #     - setup_remote_docker      
+  #     - run:
+  #         name: Build docker image for profile
+  #         command: |
+  #           source ~/nebulae/repo/.circleci/scripts/gitChanged.sh
+  #           cd ~/nebulae/repo/
+  #           mkdir ~/nebulae/backend
+  #           # unmcomment the following line when backend exist
+  #           # cp ~/nebulae/go/mbinit ~/nebulae/repo/backend/profile/
+  #           export DOCKERHUB_IMAGE=profile.backend.profile
+  #           export DOCKERHUB_TAG=0.0.1
+  #           gitChanged backend/profile || docker build  -t $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:$DOCKERHUB_TAG -t $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:latest ~/nebulae/repo/backend/profile/
+  #           gitChanged backend/profile || docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
+  #           gitChanged backend/profile || docker push $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:$DOCKERHUB_TAG
+  #           gitChanged backend/profile || docker push $DOCKERHUB_NAMESPACE/$DOCKERHUB_IMAGE:latest      
+  #     - persist_to_workspace:
+  #         root: ~/nebulae/
+  #         paths:
+  #           - backend            
 
 ################ DEPLOYMENT ################
   deploy-prod:
