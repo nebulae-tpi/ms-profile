@@ -8,6 +8,7 @@ import { locale as spanish } from "./i18n/es";
 import { FuseTranslationLoaderService } from "../../../core/services/translation-loader.service";
 
 @Component({
+  
   // tslint:disable-next-line:component-selector
   selector: "profile",
   templateUrl: "./profile.component.html",
