@@ -2,20 +2,22 @@
 
     <!-- HEADER -->
     <div class="header p-24" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between end">
-
-        <div class="user-info" *ngIf="userDetails" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="start center">
+    
+        <div class="user-info" *ngIf="userDetails" fxLayout="column" fxLayoutAlign="center center" fxLayout.gt-sm="row"
+            fxLayoutAlign.gt-sm="start center">
             <img class="profile-image avatar huge" src="assets/images/avatars/profile.jpg" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">
             <div class="name" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                 {{userDetails.firstName}} {{userDetails.lastName}}
             </div>
         </div>
-
+    
         <div class="actions" fxLayout="row" fxLayoutAlign="end center" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'200ms'}}">
-            <button mat-raised-button color="primary" (click)="goToEditKeycloakAccount()">{{'PROFILE.EDIT_PROFILE' | translate}}
+            <button mat-raised-button color="primary" (click)="goToEditKeycloakAccount()">{{'PROFILE.EDIT_PROFILE' |
+                translate}}
                 <mat-icon>edit</mat-icon>
             </button>
         </div>
-
+    
     </div>
     <!-- / HEADER -->
 
