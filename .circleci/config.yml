@@ -1,5 +1,5 @@
 
-version: 2
+version: 2.1
 jobs:
   # register-microservice:
   prepare:
@@ -258,7 +258,7 @@ jobs:
         #     command: |
         #           kubectl apply -f ~/nebulae/repo/deployment/gke/ 
 workflows:
-  version: 2
+  version: 2.1
   build-and-deploy:
     jobs:
       - prepare:
@@ -286,3 +286,16 @@ workflows:
             - build-frontend
             # - build-api
             # - build-backend
+      - hold:
+          type: approval
+      - build-frontend:
+          context: TPI_PROD
+          name: build-frontend-prod
+          requires:
+            - prepare
+            - hold  
+      - deploy-dev:
+          context: TPI_PROD
+          name: deploy-dev-prod
+          requires:
+            - build-frontend-prod
