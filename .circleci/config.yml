@@ -267,6 +267,10 @@ workflows:
           context: TPI
           requires:
             - prepare
+          filters:
+            branches:
+              only:
+                - develop
       # - build-api:
       #     context: TPI
       #     requires:
@@ -286,16 +290,25 @@ workflows:
             - build-frontend
             # - build-api
             # - build-backend
-      - hold:
-          type: approval
+          filters:
+            branches:
+              only:
+                - develop
       - build-frontend:
           context: TPI_PROD
           name: build-frontend-prod
           requires:
             - prepare
-            - hold  
+          filters:
+            branches:
+              only:
+                - master
       - deploy-dev:
           context: TPI_PROD
           name: deploy-dev-prod
           requires:
             - build-frontend-prod
+          filters:
+            branches:
+              only:
+                - master
